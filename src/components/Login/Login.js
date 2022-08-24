@@ -24,19 +24,20 @@ const Login = (props) => {
 
 const [passwordState, dispatchPassword] = useReducer(passwordRaducer, {value: '', isValid: null});
 
+const {isValid: passwordIsValid} = passwordState;
 
   useEffect(() => {
     const identifier = setTimeout(() => {
       console.log('amine');
       setFormIsValid(
         // enteredEmail.includes('@') && enteredPassword.trim().length > 6
-        enteredEmail.includes('@') && passwordState.isValid
+        enteredEmail.includes('@') && passwordIsValid
       );
     }, 500);
     return () => {
       clearTimeout(identifier);
     };
-  }, [enteredEmail, passwordState.isValid]);
+  }, [enteredEmail, passwordIsValid]);
 
   const emailChangeHandler = (event) => {
     setEnteredEmail(event.target.value);
